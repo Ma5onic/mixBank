@@ -1,9 +1,7 @@
 
 # mixBank
 
-Totally Sweet App
-
-## how
+A react-redux banking app
 
 ### install
 
