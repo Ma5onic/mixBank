@@ -1,4 +1,5 @@
 var test = require('tape')
+
 import Account from '../components/account'
 
 test('testing mixBank', function (t) {
@@ -19,3 +20,4 @@ test('calculateBalance uses transactions to calculate balance', function (t) {
   t.equal(expectedBalance, actualBalance)
   t.end()
 })
+

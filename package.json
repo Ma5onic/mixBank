@@ -6,8 +6,8 @@
   "scripts": {
     "start": "budo . -d --serve bundle.js --live",
     "build": "browserify . -o bundle.js -g uglifyify",
-    "testdev": "browserify test/index.js | node | tap-spec",
-    "test": "node test/index.js | tap-diff",
+    "testdev": "browserify test/test.js | node | tap-spec",
+    "test": "node test/supertest.js | tap-diff",
     "dist": "mkdir -p dist && bash -c 'cp *.{js,html,css} dist'",
     "push": "gh-pages -d dist",
     "deploy": "npm run build && npm run dist && npm run push"
