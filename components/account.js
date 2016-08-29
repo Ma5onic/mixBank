@@ -19,9 +19,8 @@ class Account extends Component {
     console.log("initial state!", initialState)
     return (
         <div>
-            <h2>This is the account id 1</h2>
-            <p>{this.state.account.transactions[0].id}</p>
-            <p>{this.state.account.transactions[0].amount}</p>
+            <h2>This is the transaction information for account {this.state.account.transactions[0].id}</h2>
+            <p>${this.state.account.transactions[0].amount}</p>
             <p>{this.state.account.transactions[0].description}</p>
         </div>
     )
