@@ -1,7 +1,7 @@
 import React from 'react'
 import initialState from './index.js'
 
-function bank (props) {
+function Bank (props) {
   return (
     <div>
       <h2>This is the account id 1</h2>
@@ -11,4 +11,4 @@ function bank (props) {
   )
 }
 
-export default Shop
+export default Bank
