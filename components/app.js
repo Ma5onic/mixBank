@@ -9,12 +9,11 @@ class App extends Component {
   }
 
   render () {
-    console.log("initial state app!", initialState)
     return (
-        <div>
-            <h1>Welcome to {this.props.name}</h1>
-            <Account />
-        </div>
+      <div>
+        <h1>Welcome to {this.props.name}</h1>
+        <Account />
+      </div>
     )
   }
 
