@@ -4,7 +4,7 @@ import App from './components/app'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-const initialState = {
+export const initialState = {
     account:
       {
         id: 1,
@@ -25,16 +25,8 @@ const initialState = {
     }
 }
 
-const reducer = function (state = initialState , action) {
-  return state
-}
 
-const store = createStore(reducer)
+render(<App name='mixBank' />, document.querySelector('main'))
+console.log('welcome to mixBank')
 
-render(
-  <Provider store={store}>
-    <App name='mixBank' />
-  </Provider>,
-  document.querySelector('main')
-)
 
