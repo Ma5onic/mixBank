@@ -8,6 +8,10 @@ class Account extends Component {
     this.state = initialState
   }
 
+  calculateBalance(transactions) {
+  //calculate balance function needs to go here
+  }
+
   render () {
     return (
 
