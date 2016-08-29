@@ -7,8 +7,7 @@ test('testing mixBank', function (t) {
 })
 
 
-//arrange that the expectedBalance will be +500-400
-//based on two transations in initialState
+//arrange that expectedBalance will be +500-400
 const expectedBalance = 100
 
 const testArray = [ {amount: -400}, {amount: 500} ]
