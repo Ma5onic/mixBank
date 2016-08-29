@@ -1,14 +1,31 @@
-import React from 'react'
-import initialState from './index.js'
+import React, { Component } from 'react'
+import initialState from '../state.js'
 
-function Bank (props) {
-  return (
-    <div>
-      <h2>This is the account id 1</h2>
-      {this.props.account}
-      <h2>This is the account id 2</h2>
-    </div>
-  )
+class Account extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = initialState
+  }
+
+  // displayInformation (account) {
+  //   return account.map(function(item){
+  //       return
+  //       <p>{item}</p>
+  //   })
+  // }
+
+  render () {
+    console.log("initial state!", initialState)
+    return (
+        <div>
+            <h2>This is the account id 1</h2>
+            <p>{this.state.account.transactions[0].id}</p>
+            <p>{this.state.account.transactions[0].amount}</p>
+            <p>{this.state.account.transactions[0].description}</p>
+        </div>
+    )
+  }
 }
 
-export default Bank
+export default Account
