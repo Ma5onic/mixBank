@@ -1,13 +1,9 @@
 var config = require('../knexfile').development
 var knex = require('knex')(config)
-//actually should use knex db for database, not client side dummy data
-
 
 const getTransactionsForAccount = (id) => {
-  return knex.select('*').table('transactions')
-  // in the future, this will need a join query from actual db
+  // you're hard coding the id here! 
+  return knex('transactions').where('to_account_id', 1).orWhere('from_account_id', 1)
 }
 
-module.exports = {
-  getTransactionsForAccount
-}
+module.exports = {getTransactionsForAccount}
