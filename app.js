@@ -16,8 +16,6 @@ app.get('/api/v1/accounts/:id/transactions', (req,res) => {
     })
 
     .catch(logError)
-
-  // res.json(data)
 })
 
  const logError = (err) => {

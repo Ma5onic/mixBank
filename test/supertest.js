@@ -39,7 +39,7 @@ request(app)
 
       t.deepEqual(data, expected, 'we are the same and yay for testing')
 
-      t.deepEqual(data.id, 1 ,"the url account id is the matches the account data i get back")
+      t.deepEqual(data.id, 1 ,"the url account id is the matches the account data that comes back")
 
       t.end()
     })
