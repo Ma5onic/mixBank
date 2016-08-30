@@ -7,4 +7,6 @@
   }
 }
 
-export default retrieveTransaction 
+export {
+  retrieveTransaction
+}

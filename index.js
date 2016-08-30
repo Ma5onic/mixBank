@@ -10,7 +10,8 @@ const store = createStore(reducers)
 import App from './components/app'
 
 
-render(
+render
+  (
     <Provider store={store}>
       <App name ='Mix Bank'/>
     </Provider>,
