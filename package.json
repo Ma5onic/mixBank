@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "budo . -d --serve bundle.js --live",
+    "start-server": "node server.js",
     "build": "browserify . -o bundle.js -g uglifyify",
     "testdev": "browserify test/test.js | node | tap-spec",
     "test": "node test/supertest.js | tap-diff",
