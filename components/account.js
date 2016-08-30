@@ -14,7 +14,7 @@ class Account extends Component {
 
   render () {
     return (
-
+    //this code needs to be refactored
     <div className="container">
         <h2>Transaction Information </h2>
         <p>This is the transaction information for account {this.state.account.id}</p>

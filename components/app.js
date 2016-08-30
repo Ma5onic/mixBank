@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Account from './account'
-import initialState from '../state'
 
 class App extends Component {
 
