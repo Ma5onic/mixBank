@@ -10,8 +10,9 @@ app.get('/api/v1/accounts/:id/transactions', (req,res) => {
   getTransactionsForAccount(id)
 
     .then((transactions)=> {
+        const data = {id:id, transactions:transactions}
         console.log(transactions)
-        res.json(transactions)
+        res.json(data)
     })
 
     .catch(logError)
