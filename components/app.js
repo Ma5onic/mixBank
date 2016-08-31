@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Account from './account'
+import Account from '../containers/accounts'
 
 class App extends Component {
 
