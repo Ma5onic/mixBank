@@ -1,53 +1,47 @@
-import React, { Component } from 'react'
-import initialState from '../state.js'
+import React from 'react'
+import {connect} from 'react-redux'
 
-class Account extends Component {
+class Account extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = initialState
-  }
-
-  calculateBalance(transactions) {
-  //calculate balance function needs to go here
   }
 
   render () {
+
     return (
-    //this code needs to be refactored
-    <div className="container">
-        <h2>Transaction Information </h2>
-        <p>This is the transaction information for account {this.state.account.id}</p>
-        <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th>Transaction Id</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>From-Account</th>
-                <th>To-Account</th>
+      <div className="container">
+      <h2>Transaction Information </h2>
+      <br></br>
+      <table className="table table-bordered">
+          <thead>
+            <tr className="danger">
+              <th className="text-center">Transaction Id</th>
+              <th className="text-center">Amount</th>
+              <th className="text-center">Description</th>
+              <th className="text-center">From-Account</th>
+              <th className="text-center">To-Account</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.transactions.transactions && this.props.transactions.transactions.map( (transaction)=> {
+              return (
+                <tr className="warning">
+                <td>{transaction.id}</td>
+                <td>${transaction.amount}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.from_account_id}</td>
+                <td>{transaction.to_account_id}</td>
               </tr>
-            </thead>
-            <tbody>
-              <tr className="danger">
-                <td>{this.state.account.transactions[0].id}</td>
-                <td>${this.state.account.transactions[0].amount}</td>
-                <td>{this.state.account.transactions[0].description}</td>
-                <td>{this.state.account.transactions[0].from_account_id}</td>
-                <td>{this.state.account.transactions[0].to_account_id}</td>
-              </tr>
-              <tr className="success">
-                <td>{this.state.account.transactions[1].id}</td>
-                <td>${this.state.account.transactions[1].amount}</td>
-                <td>{this.state.account.transactions[1].description}</td>
-                <td>{this.state.account.transactions[1].from_account_id}</td>
-                <td>{this.state.account.transactions[1].to_account_id}</td>
-              </tr>
-            </tbody>
-        </table>
-    </div>
+
+                )
+            })}
+          </tbody>
+      </table>
+  </div>
     )
   }
+
 }
 
 export default Account
