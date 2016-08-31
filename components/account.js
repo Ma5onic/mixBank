@@ -12,20 +12,21 @@ class Account extends React.Component {
     return (
       <div className="container">
       <h2>Transaction Information </h2>
+      <br></br>
       <table className="table table-bordered">
           <thead>
-            <tr>
-              <th>Transaction Id</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th>From-Account</th>
-              <th>To-Account</th>
+            <tr className="danger">
+              <th className="text-center">Transaction Id</th>
+              <th className="text-center">Amount</th>
+              <th className="text-center">Description</th>
+              <th className="text-center">From-Account</th>
+              <th className="text-center">To-Account</th>
             </tr>
           </thead>
           <tbody>
             {this.props.transactions.transactions && this.props.transactions.transactions.map( (transaction)=> {
               return (
-                <tr className="success">
+                <tr className="warning">
                 <td>{transaction.id}</td>
                 <td>${transaction.amount}</td>
                 <td>{transaction.description}</td>
