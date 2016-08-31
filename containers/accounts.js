@@ -6,5 +6,6 @@ const mapStateToProps = (state) => {
   return state.recieveTransactions
 }
 
+
 //call connect - pass it mapStateToProps, then call it the function it gets back and give it the account component
 export default connect(mapStateToProps)(Account)

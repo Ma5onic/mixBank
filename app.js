@@ -1,7 +1,9 @@
 const express = require('express')
-const { getTransactionsForAccount } = require('./database/queries')
-
+const queries  = require('./database/queries')
+const getTransactionsForAccount = queries.getTransactionsForAccount
 const app = express()
+const cors = require('cors')
+app.use(cors());
 
 app.get('/api/v1/accounts/:id/transactions', (req, res) => {
   var id = Number(req.params.id)
@@ -14,8 +16,6 @@ app.get('/api/v1/accounts/:id/transactions', (req, res) => {
     .catch(logError)
 })
 
-// is logError the best name for this?
-// res will not be in scope so this function won't work!
 const logError = (err) => {
   res.status(500).send('cant display data')
 }
