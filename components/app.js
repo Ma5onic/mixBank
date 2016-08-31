@@ -5,44 +5,34 @@ import {connect} from 'react-redux'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAccountInfo: id => {
+    fetchAccountInfo:() => {
       console.log('dispatching')
-      dispatch(fetchAccountInfo(id))
+      dispatch(fetchAccountInfo())
     }
   }
 }
 
 class App extends Component {
 
-  constructor (props) {
-    super(props)
-  }
 
-  componentDidMount() {
-    console.log('componentDidMount')
+componentDidMount() {
+  this.props.fetchAccountInfo()
+}
 
-    this.props.fetchAccountInfo(3)
 
-  }
-
-  render () {
-
-  console.log(this.props, "these are props")
-
-    return (
-      <div>
-        <h1>Welcome to {this.props.name}</h1>
-      </div>
+render () {
+  const accounts = { transactions: []}
+  return (
+    <div>
+      <h1>Welcome to {this.props.name}</h1>
+      <Account transactions={this.props.transactions}/>
+    </div>
     )
   }
 
 }
 
-// export default App
 
 export default connect((state) => state, mapDispatchToProps)(App)
-
-// component loads ?
-// user interaction
 
 

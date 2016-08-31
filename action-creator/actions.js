@@ -9,15 +9,14 @@ const recieveTransactions = function (payload) {
 
 const fetchAccountInfo = (id) => {
   return (dispatch) => {
-    request.get('http://localhost:3000/api/v1/accounts/1/transactions')
+    request.get('http://localhost:3000/api/v1/accounts/2/transactions')
     .end( (err, res) => {
       console.log('fetched data')
       if (err) {
-        console.log("not working", err, id)
-        return
+        return console.log("not working", err, id)
       }
       console.log('res', res)
-      dispatch(recieveTransactions(res.body))
+      dispatch(recieveTransactions(JSON.parse(res.text)))
     })
   }
 }

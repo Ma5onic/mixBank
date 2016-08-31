@@ -1,10 +1,11 @@
-import initialState from '../state'
-function recieveTransactions (state = initialState, action) {
+// import initialState from '../state'
+
+function recieveTransactions (state = {}, action) {
 
   switch (action.type) {
     case 'FETCHED_DATA':
       console.log('action', action, state)
-      return action.payload
+      return Object.assign({}, action.payload)
 
     default:
       return state
