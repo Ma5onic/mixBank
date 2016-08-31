@@ -1,13 +1,15 @@
-function recieveTransactions (state = [], action) {
-  switch (action.type) {
-    case 'RETRIEVE_ACCOUNT_TRANSACTIONS':
-      return [
-        ...action.payload
-      ]
+import initialState from '../state'
+function recieveTransactions (state = initialState, action) {
+  // switch (action.type) {
+  //   case 'FETCHED_DATA':
+  //     return [
+  //       ...action.payload
+  //     ]
 
-      default:
-        return state
-  }
+  //     default:
+  //       return state
+  // }
+  return state
 }
 
 export default recieveTransactions
