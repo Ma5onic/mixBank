@@ -4,11 +4,10 @@ var hbs = require('express-hbs')//do we need to install this?
 var bodyParser = require('body-parser') //do we need to install this?
 const queries  = require('./database/queries')
 const getTransactionsForAccount = queries.getTransactionsForAccount
+const authenticatePassword = queries.authenticatePassword
 const app = express()
 const cors = require('cors')
 app.use(cors());
-var bcrypt = require('bcrypt')
-var saltRounds = 10
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'

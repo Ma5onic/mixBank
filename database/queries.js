@@ -1,5 +1,7 @@
 var config = require('../knexfile').development
 var knex = require('knex')(config)
+var bcrypt = require('bcrypt')
+var saltRounds = 10
 
 const getTransactionsForAccount = (id) => {
   return knex('transactions').where('to_account_id', id).orWhere('from_account_id', id)
@@ -32,5 +34,5 @@ const authenticatePassword = (id, name, password) => {
 
 module.exports = {
     getTransactionsForAccount
-    signIn
+    authenticatePassword
 }
