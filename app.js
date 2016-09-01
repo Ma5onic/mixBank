@@ -1,9 +1,9 @@
-const express = require('express')
-var session = require('express-session')
-var hbs = require('express-hbs')//do we need to install this?
-var bodyParser = require('body-parser') //do we need to install this?
-var session = require('express-session')
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
+const express = require('express')
+const session = require('express-session')
+const hbs = require('express-hbs')
+const bodyParser = require('body-parser')
 const queries  = require('./database/queries')
 const getTransactionsForAccount = queries.getTransactionsForAccount
 const checkDatabaseForEmail = queries.checkDatabaseForEmail
@@ -48,7 +48,6 @@ app.get('/', (req, res, next) => {
 
 /* GET transactions page. */
 app.get('/api/v1/accounts/:id/transactions', (req, res) => {
-  console.log("finding the page!")
   var id = Number(req.params.id)
   getTransactionsForAccount(id)
   .then((transactions) => {
@@ -75,10 +74,7 @@ app.post('/sign-in', function (req, res) {
   checkDatabaseForEmail(email)//find account by email
   .then((account) => {
     if (authenticateAccount(account, password)) {
-      // console.log("this is the cookie:", req.session)
       req.session.accountId = account.id
-      // console.log(req.session.accounts)
-      console.log('here')
       res.redirect('/api/v1/accounts/1/transactions')
     } else {
       res.redirect('/home')
