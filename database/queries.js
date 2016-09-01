@@ -7,15 +7,12 @@ const getTransactionsForAccount = (id) => {
   return knex('transactions').where('to_account_id', id).orWhere('from_account_id', id)
 }
 
-const authenticatePassword = (id, name, password) => {
+const checkDatabaseForEmail = (email) => {
   return knex('accounts')
     .where('email', email)
-    .then( logInData => {
-      console.log("here is the sign in info: ", ...logInData)
-      // if (password === logInData.account_password)
-      return
-        //if/else
-        logInData
+    .then((accounts) => {
+      console.log("here is the sign in info: ", accounts)
+      return accounts[0]
     })
 }
 
@@ -33,6 +30,6 @@ const authenticatePassword = (id, name, password) => {
 // })
 
 module.exports = {
-    getTransactionsForAccount
-    authenticatePassword
+    getTransactionsForAccount,
+    checkDatabaseForEmail
 }

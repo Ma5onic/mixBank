@@ -1,16 +1,5 @@
 var app = require('./app')
-var express = require('express')
-var session = require('express-session')
 
-var app = express()
-
-//express sessions set up
-app.use(session({
-  secret: 'shhh',
-  maxAge: 1000*60*2,
-  resave: true,         // read about this option: https://www.npmjs.com/package/express-session#resave
-  saveUninitialized: false
-}))
 
 
 // Access the session as req.session
