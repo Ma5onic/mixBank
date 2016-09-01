@@ -41,10 +41,10 @@ app.use(bodyParser.json())
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-// /* GET home page. */
-// app.get('/', (req, res, next) => {
-//   res.redirect('/sign-in');
-// });
+/* GET home page. */
+app.get('/', (req, res, next) => {
+  res.redirect('/sign-in');
+});
 
 /* GET transactions page. */
 app.get('/api/v1/accounts/:id/transactions', (req, res) => {
@@ -79,7 +79,7 @@ app.post('/sign-in', function (req, res) {
       req.session.accountId = account.id
       // console.log(req.session.accounts)
       console.log('here')
-      res.redirect('www.google.com')
+      res.redirect('/api/v1/accounts/1/transactions')
     } else {
       res.redirect('/home')
     }
