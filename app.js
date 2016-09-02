@@ -1,16 +1,17 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
 const express = require('express')
-var session = require('express-session')
-var hbs = require('express-hbs')//do we need to install this?
-var bodyParser = require('body-parser') //do we need to install this?
-var session = require('express-session')
+const session = require('express-session')
+const hbs = require('express-hbs')
+const bodyParser = require('body-parser')
 
 const queries  = require('./database/queries')
 const getTransactionsForAccount = queries.getTransactionsForAccount
 const checkDatabaseForEmail = queries.checkDatabaseForEmail
-const app = express()
-const cors = require('cors')
-app.use(cors());
 
+const app = express()
+
+app.use(express.static('public'));
 
 //express sessions set up
 app.use(session({
@@ -21,19 +22,6 @@ app.use(session({
 }))
 
 
-// Set default node environment to development
-// process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-
-//sweet if statement from exercise
-// app.get('/api/v1/*', (req, res, next) => {
-
-//   if (req.session.accountData) {
-//     next()
-//   } else {
-//     res.redirect('/nope')
-//   }
-
-// })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -45,18 +33,6 @@ app.set('views', __dirname + '/views');
 app.get('/', (req, res, next) => {
   res.redirect('/sign-in');
 });
-
-/* GET transactions page. */
-app.get('/api/v1/accounts/:id/transactions', (req, res) => {
-  console.log("finding the page!")
-  var id = Number(req.params.id)
-  getTransactionsForAccount(id)
-  .then((transactions) => {
-    const data = {id: id, transactions: transactions}
-      res.json(data)
-    })
-  .catch(logError)
-})
 
 /* GET sign-in page. */
 app.get('/sign-in', function (req, res) {
@@ -75,16 +51,41 @@ app.post('/sign-in', function (req, res) {
   checkDatabaseForEmail(email)//find account by email
   .then((account) => {
     if (authenticateAccount(account, password)) {
-      // console.log("this is the cookie:", req.session)
       req.session.accountId = account.id
-      // console.log(req.session.accounts)
-      console.log('here')
-      res.redirect('/api/v1/accounts/1/transactions')
+
+      res.redirect('/app')
     } else {
       res.redirect('/home')
     }
   })
 })
+
+//sweet if statement from exercise
+// app.get('/api/v1/*', (req, res, next) => {
+
+//   if (req.session.accountData) {
+//     next()
+//   } else {
+//     res.redirect('/nope')
+//   }
+
+// })
+
+
+app.get('/app', (req, res) => res.render('app'))
+
+/* GET transactions api */
+app.get('/api/v1/accounts/:id/transactions', (req, res) => {
+
+  var id = req.session.accountId
+  getTransactionsForAccount(id)
+  .then((transactions) => {
+    const data = {id: id, transactions: transactions}
+      res.json(data)
+    })
+  .catch(logError)
+})
+
 
 const logError = (err) => {
   res.status(500).send('cant display data')
