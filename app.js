@@ -8,8 +8,6 @@ const queries  = require('./database/queries')
 const getTransactionsForAccount = queries.getTransactionsForAccount
 const checkDatabaseForEmail = queries.checkDatabaseForEmail
 const app = express()
-const cors = require('cors')
-app.use(cors());
 
 
 //express sessions set up
