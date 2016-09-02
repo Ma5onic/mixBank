@@ -8,6 +8,7 @@
     "bundle": "NODE_ENV=production browserify client/index.js -o public/bundle.js -g uglifyify",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "db:setup": "knex migrate:latest && knex seed:run",
     "dev:watch": "watchify client/index.js -o public/bundle.js -d",
     "dist": "mkdir -p dist && bash -c 'cp *.{js,html,css} dist'",
     "push": "gh-pages -d dist",
