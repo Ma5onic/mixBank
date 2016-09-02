@@ -21,8 +21,6 @@ app.use(session({
   saveUninitialized: false
 }))
 
-
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -55,21 +53,21 @@ app.post('/sign-in', function (req, res) {
 
       res.redirect('/app')
     } else {
-      res.redirect('/home')
+      res.redirect('/sign-in')
     }
   })
 })
 
 //sweet if statement from exercise
-// app.get('/api/v1/*', (req, res, next) => {
+app.get('/api/v1/*', (req, res, next) => {
 
-//   if (req.session.accountData) {
-//     next()
-//   } else {
-//     res.redirect('/nope')
-//   }
+  if (req.session.accountId) {
+    next()
+  } else {
+    res.redirect('/sign-in')
+  }
 
-// })
+})
 
 
 app.get('/app', (req, res) => res.render('app'))
