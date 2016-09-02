@@ -60,6 +60,12 @@ app.post('/sign-in', function (req, res) {
   })
 })
 
+app.get('/sign-out', (req, res) => {
+console.log("signinout");
+  req.session.destroy()
+  res.redirect('/sign-in')
+})
+
 //sweet if statement from exercise
 // app.get('/api/v1/*', (req, res, next) => {
 
@@ -83,12 +89,14 @@ app.get('/api/v1/accounts/:id/transactions', (req, res) => {
     const data = {id: id, transactions: transactions}
       res.json(data)
     })
-  .catch(logError)
+  .catch(logError(res))
 })
 
 
-const logError = (err) => {
-  res.status(500).send('cant display data')
+const logError = (res) => {
+  return (err) => {
+    res.status(500).send('cant display data')
+  }
 }
 
 module.exports = app

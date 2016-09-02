@@ -11,7 +11,7 @@ class Account extends React.Component {
 
     return (
       <div className="container">
-      <h2>Transaction Information </h2>
+      <h2 className="text-center">Transaction Information </h2>
       <br></br>
       <table className="table table-bordered">
           <thead>
@@ -45,4 +45,3 @@ class Account extends React.Component {
 }
 
 export default Account
-
