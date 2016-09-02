@@ -21,6 +21,7 @@ const fetchAccountInfo = (id) => {
   }
 }
 
+
 export {
   recieveTransactions,
   fetchAccountInfo

@@ -24,8 +24,9 @@ render () {
   const accounts = { transactions: []}
   return (
     <div>
-      <h1>Welcome to {this.props.name}</h1>
-      <Account transactions={this.props.transactions}/>
+      <h1 className="text-center">Welcome to {this.props.name}</h1>
+      <Account  transactions={this.props.transactions}/>
+      <a type="submit"  href="/sign-out"> Sign-out</a>
     </div>
     )
   }
@@ -34,5 +35,3 @@ render () {
 
 
 export default connect((state) => state, mapDispatchToProps)(App)
-
-
