@@ -75,7 +75,7 @@ app.post('/sign-in', function (req, res) {
   .then((account) => {
     if (authenticateAccount(account, password)) {
       req.session.accountId = account.id
-      res.redirect('/api/v1/accounts/1/transactions')
+      res.redirect('/api/v1/accounts/:id/transactions')
     } else {
       res.redirect('/home')
     }
