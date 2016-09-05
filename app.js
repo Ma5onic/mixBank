@@ -47,19 +47,21 @@ const authenticateAccount = (account, passwordToCheck) => {
 //query the user table to check if the email and / or password match the data
 //call checkDatabaseForName function and return user ID
 app.post('/sign-in', function (req, res) {
-  const {email, password} = req.body
+  var email = req.body.email
+  var password = req.body.password
+  var name = req.body.name
 
   checkDatabaseForEmail(email)//find account by email
   .then((account) => {
     const hash = account.password
     const myPassword = req.body.password
+    var id = account.id
 
     bcrypt.compare(myPassword, hash, function(err, result){
       if (result) {
-        req.session.account = { id: account.id, userName: account.name }
-        // req.session.email = email
-        // req.session.id = id
-        res.redirect('/app')
+        req.session.name = name
+        req.session.id = id
+        res.redirect('/')
       }
       else {
         res.redirect('/sign-in')
