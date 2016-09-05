@@ -7,21 +7,21 @@ const getTransactionsForAccount = (id) => {
   return knex('transactions').where('to_account_id', id).orWhere('from_account_id', id)
 }
 
-const checkDatabaseForEmail = (name) => {
+const checkDatabaseForEmail = (email) => {
   return knex('accounts')
-    .where('name', name)
+    .where('email', email)
     .then((accounts) => {
       console.log("here is the sign in info: ", accounts)
       return accounts[0]
     })
 }
 
-var myPassword = "Ireland"
+var testPassword = "Ireland"
 
 bcrypt.genSalt(saltRounds, function(err, salt) {
-bcrypt.hash(myPassword, saltRounds, function(err, hash) {
+bcrypt.hash(testPassword, saltRounds, function(err, hash) {
 
-    console.log('pass:', myPassword)
+    console.log('pass:', testPassword)
     console.log('hash:', hash)
     console.log('')
 

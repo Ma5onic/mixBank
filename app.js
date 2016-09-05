@@ -9,6 +9,9 @@ const queries  = require('./database/queries')
 const getTransactionsForAccount = queries.getTransactionsForAccount
 const checkDatabaseForEmail = queries.checkDatabaseForEmail
 
+var bcrypt = require('bcrypt')
+var saltRounds = 10
+
 const app = express()
 
 app.use(express.static('public'));
@@ -40,27 +43,36 @@ app.get('/sign-in', function (req, res) {
 const authenticateAccount = (account, passwordToCheck) => {
   return account.password === passwordToCheck
 }
-
+//POST sign in data. Looking in the req.body for the data sent from the form
+//query the user table to check if the email and / or password match the data
+//call checkDatabaseForName function and return user ID
 app.post('/sign-in', function (req, res) {
-  const {name, password} = req.body
+  const {email, password} = req.body
 
-  checkDatabaseForEmail(name)//find account by name
+  checkDatabaseForEmail(email)//find account by email
   .then((account) => {
     const hash = account.password
-    const myPassword - req.body.password
+    const myPassword = req.body.password
 
-    bcrypt.compare(myPassword, hash, function(err, result) {
-        if (result) {
-          req.session.name = name
-          req.session.id = id
-          res.redirect('/' + name)
-        }
-        else {
-          res.redirect('/sign-in')
-          }
-      })
-   })
-}
+    bcrypt.compare(myPassword, hash, function(err, result){
+      if (result) {
+        req.session.account = { id: account.id, userName: account.name }
+        // req.session.email = email
+        // req.session.id = id
+        res.redirect('/app')
+      }
+      else {
+        res.redirect('/sign-in')
+      }
+    })
+  })
+})
+
+//   var userName = req.body.userName
+//   var password = req.body.password
+// //find the row in the database by the userName
+//   db.findUserIdByUserName(userName) //will return the row as an object
+//
 
 app.get('/sign-out', (req, res) => {
 console.log("signinout");
