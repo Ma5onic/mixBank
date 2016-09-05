@@ -7,27 +7,27 @@ const getTransactionsForAccount = (id) => {
   return knex('transactions').where('to_account_id', id).orWhere('from_account_id', id)
 }
 
-const checkDatabaseForEmail = (email) => {
+const checkDatabaseForEmail = (name) => {
   return knex('accounts')
-    .where('email', email)
+    .where('name', name)
     .then((accounts) => {
       console.log("here is the sign in info: ", accounts)
       return accounts[0]
     })
 }
 
-// var myPassword = "securePASSWORD"
+var myPassword = "Ireland"
 
-// bcrypt.genSalt(saltRounds, function(err, salt) {
-//   bcrypt.hash(myPassword, salt, function(err, hash) {
+bcrypt.genSalt(saltRounds, function(err, salt) {
+bcrypt.hash(myPassword, saltRounds, function(err, hash) {
 
-//     console.log('pass:', myPassword)
-//     console.log('hash:', hash)
-//     console.log('')
+    console.log('pass:', myPassword)
+    console.log('hash:', hash)
+    console.log('')
 
-//     // Store hash in your password DB.
-//   })
-// })
+    // Store hash in your password DB.
+  })
+})
 
 module.exports = {
     getTransactionsForAccount,

@@ -40,23 +40,27 @@ app.get('/sign-in', function (req, res) {
 const authenticateAccount = (account, passwordToCheck) => {
   return account.password === passwordToCheck
 }
-//POST sign in data. Looking in the req.body for the data sent from the form
-//query the user table to check if the email and / or password match the data
-//call checkDatabaseForName function and return user ID
+
 app.post('/sign-in', function (req, res) {
-  const {email, password} = req.body
+  const {name, password} = req.body
 
-  checkDatabaseForEmail(email)//find account by email
+  checkDatabaseForEmail(name)//find account by name
   .then((account) => {
-    if (authenticateAccount(account, password)) {
-      req.session.accountId = account.id
+    const hash = account.password
+    const myPassword - req.body.password
 
-      res.redirect('/app')
-    } else {
-      res.redirect('/sign-in')
-    }
-  })
-})
+    bcrypt.compare(myPassword, hash, function(err, result) {
+        if (result) {
+          req.session.name = name
+          req.session.id = id
+          res.redirect('/' + name)
+        }
+        else {
+          res.redirect('/sign-in')
+          }
+      })
+   })
+}
 
 app.get('/sign-out', (req, res) => {
 console.log("signinout");
