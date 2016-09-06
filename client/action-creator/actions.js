@@ -15,7 +15,7 @@ const fetchAccountInfo = (id) => {
       if (err) {
         return console.log("not working", err, id)
       }
-      console.log('res', res)
+      console.log('res.bo', res.text)
       dispatch(recieveTransactions(JSON.parse(res.text)))
     })
   }

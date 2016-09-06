@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 
 class Account extends React.Component {
 
-  constructor (props) {
-    super(props)
-  }
-
   render () {
+
+    // check if there is a transactions, if not, make trasactions = []
+    // var transactions = this.props.transactions || []
+    console.log('Account props', this.props)
 
     return (
       <div className="container">

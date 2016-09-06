@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import transactions from './recieveTransactions'
+import recieveTransactions from './recieveTransactions'
 
 
 export default combineReducers({
-  transactions
+  recieveTransactions
 })
 

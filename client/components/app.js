@@ -16,6 +16,7 @@ class App extends Component {
 
 
 componentDidMount() {
+  console.log("i got here")
   this.props.fetchAccountInfo()
 }
 

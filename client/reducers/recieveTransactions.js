@@ -1,6 +1,10 @@
 // import initialState from '../state'
 
-function recieveTransactions (state = {}, action) {
+const INITIAL_STATE = {
+  receiveTransactions: []
+}
+
+function recieveTransactions (state = INITIAL_STATE, action) {
 
   switch (action.type) {
     case 'FETCHED_DATA':

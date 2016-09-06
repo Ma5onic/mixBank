@@ -55,13 +55,16 @@ app.post('/sign-in', function (req, res) {
   .then((account) => {
     const hash = account.password
     const myPassword = req.body.password
+
+    req.session.dog = 'toto'
     var id = account.id
 
     bcrypt.compare(myPassword, hash, function(err, result){
       if (result) {
         req.session.name = name
         req.session.id = id
-        res.redirect('/')
+
+        res.redirect('/app')
       }
       else {
         res.redirect('/sign-in')
@@ -69,12 +72,6 @@ app.post('/sign-in', function (req, res) {
     })
   })
 })
-
-//   var userName = req.body.userName
-//   var password = req.body.password
-// //find the row in the database by the userName
-//   db.findUserIdByUserName(userName) //will return the row as an object
-//
 
 app.get('/sign-out', (req, res) => {
 console.log("signinout");
@@ -85,21 +82,28 @@ console.log("signinout");
 //sweet if statement from exercise
 app.get('/api/v1/*', (req, res, next) => {
 
-  if (req.session.accountId) {
+  if (req.session.id) {
     next()
   } else {
+    console.log('you got rejected trying to do GET to /api/v1/*',
+      'check yo req.session', req.session)
     res.redirect('/sign-in')
   }
 
 })
 
 
-app.get('/app', (req, res) => res.render('app'))
+app.get('/app', (req, res) => {
+  console.log('app session check', req.session)
+  res.render('app')
+})
 
 /* GET transactions api */
+//NOTE take out :id - it's not used any more
 app.get('/api/v1/accounts/:id/transactions', (req, res) => {
+  console.log('api/v1/account/transactions GET')
 
-  var id = req.session.accountId
+  var id = req.session.id
   getTransactionsForAccount(id)
   .then((transactions) => {
     const data = {id: id, transactions: transactions}
