@@ -41,7 +41,6 @@ class Account extends React.Component {
   </div>
     )
   }
-
 }
 
 export default Account
